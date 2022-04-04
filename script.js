@@ -1,15 +1,21 @@
 const app = new Vue({
     el: "#vue-app",
     data: {
-        emails: []
+        emails: [],
+        max: 10
     },
     mounted() {
-        for (let i = 0; i < 10; i++) {
+        let result;
+        const array = [];
+        for (let i = 0; i < this.max; i++) {
             axios.get("https://flynn.boolean.careers/exercises/api/random/mail").then((resp) => {
-                result = resp.data
+                result = resp.data;
+                array.push(result.response);
                 this.emails.push(result.response);
             });
-        }
+        };
+        console.log(array);
+        console.log(array.length);
     }
 });
 
